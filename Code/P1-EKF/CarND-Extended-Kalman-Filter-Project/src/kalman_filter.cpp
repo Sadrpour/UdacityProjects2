@@ -63,21 +63,19 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     float p1 = sqrt(x_(0)*x_(0) +  x_(1)*x_(1));
     float p2 = atan2(x_(1),x_(2));
 
-
     if (fabs(p2) > M_PI)
       {
         p2 -= round(p2 / (2.0d * M_PI)) * (2.0d * M_PI);
       }
 
-
     // if(p2>3.14 || p2<-3.14){cout << "p2 is : " << p2 << endl;}
     float p3 = (x_(0)*x_(2) +  x_(1)*x_(3))/p1;
     h << p1,p2,p3;
     //cout << "here1" << endl;
-    //h << sqrt(x_(0)*x_(0) +  x_(1)*x_(1)),atan2(x_(1),x_(2)),(x_(0)*x_(2) +  x_(1)*x_(3))/sqrt(x_(0)*x_(0) +  x_(1)*x_(1));
-    cout << "h is" << h << endl;
-    //VectorXd z_pred = h;
-    VectorXd z_pred = H_ * x_;
+    h << sqrt(x_(0)*x_(0) +  x_(1)*x_(1)),atan2(x_(1),x_(2)),(x_(0)*x_(2) +  x_(1)*x_(3))/sqrt(x_(0)*x_(0) +  x_(1)*x_(1));
+    // cout << "h is" << h << endl;
+    VectorXd z_pred = h;
+    // VectorXd z_pred = H_ * x_;
 	VectorXd y = z - z_pred;
 	MatrixXd Ht = H_.transpose();
 	MatrixXd S = H_ * P_ * Ht + R_;
