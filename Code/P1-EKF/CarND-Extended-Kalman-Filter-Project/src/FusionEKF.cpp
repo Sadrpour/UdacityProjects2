@@ -2,7 +2,7 @@
 #include "tools.h"
 #include "Eigen/Dense"
 #include <iostream>
-
+#define threshold 0.0001
 using namespace std;
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -120,6 +120,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * Update the process noise covariance matrix.
      * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
    */
+    // saturate very small px and py below threshold
+    if (fabs(ekf_.x_[0]) < threshold and fabs(ekf_.x_[1]) < threshold){
+	  ekf_.x_[0] = threshold;
+	  ekf_.x_[1] = threshold;
+    }
 
    	float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;	//dt - expressed in seconds
 

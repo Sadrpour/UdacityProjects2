@@ -5,6 +5,9 @@ using Eigen::VectorXd;
 using Eigen::MatrixXd;
 using std::vector;
 using namespace std;
+
+#define threshold 0.0001
+
 Tools::Tools() {}
 
 Tools::~Tools() {}
@@ -67,10 +70,20 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 	float c3 = (c1*c2);
     //cout << "C1" << px << "and" << py << endl;
 	//check division by zero
+
+    // saturating px and py below threshold
+	if (fabs(px) < threshold and fabs(py) < threshold){
+	  px = threshold;
+	  py = threshold;
+    }
+
+    // we do not need this if condition considering the if condition above, keeping for future reference
 	if(fabs(c1) < 0.0001){
 		cout << "CalculateJacobian () - Error - Division by Zero" << endl;
 		return Hj;
 	}
+
+
 
 	//compute the Jacobian matrix
 	Hj << (px/c2), (py/c2), 0, 0,
