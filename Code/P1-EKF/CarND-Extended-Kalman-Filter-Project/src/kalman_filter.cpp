@@ -61,7 +61,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
     VectorXd h(3);
     float p1 = sqrt(x_(0)*x_(0) +  x_(1)*x_(1));
-    float p2 = atan2(x_(1),x_(2));
+    float p2 = atan2(x_(1),x_(0));
 
     if (fabs(p2) > M_PI)
       {
@@ -72,7 +72,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     float p3 = (x_(0)*x_(2) +  x_(1)*x_(3))/p1;
     h << p1,p2,p3;
     //cout << "here1" << endl;
-    h << sqrt(x_(0)*x_(0) +  x_(1)*x_(1)),atan2(x_(1),x_(2)),(x_(0)*x_(2) +  x_(1)*x_(3))/sqrt(x_(0)*x_(0) +  x_(1)*x_(1));
+    // h << sqrt(x_(0)*x_(0) +  x_(1)*x_(1)),atan2(x_(1),x_(0)),(x_(0)*x_(2) +  x_(1)*x_(3))/sqrt(x_(0)*x_(0) +  x_(1)*x_(1));
     // cout << "h is" << h << endl;
     VectorXd z_pred = h;
     // VectorXd z_pred = H_ * x_;
