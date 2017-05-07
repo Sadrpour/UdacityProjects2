@@ -30,7 +30,7 @@ public:
   MatrixXd P_;
 
   ///* prediction sigma points from postrior of last time step
-  VectorXd Xsig_aug;
+  MatrixXd Xsig_aug;
 
   ///* predicted sigma points matrix
   MatrixXd Xsig_pred_;
