@@ -126,6 +126,8 @@ time_us_ = meas_package.timestamp_;
 
 UKF::Prediction(dt);
 
+// if i want to ignore an observation from a sensor i will add a condition (use_radar_==true) to the if below
+
 if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
       UKF::UpdateRadar(meas_package);
     } else if (meas_package.sensor_type_ == MeasurementPackage::LASER) {
