@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/helper_functions.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/helper_functions.h
 sstream
 -
 fstream
@@ -16,9 +16,9 @@ math.h
 vector
 -
 map.h
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/map.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/map.h
 
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/json.hpp
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/json.hpp
 algorithm
 -
 array
@@ -74,21 +74,21 @@ utility
 vector
 -
 
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/main.cpp
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/main.cpp
 uWS/uWS.h
 -
 iostream
 -
 json.hpp
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/json.hpp
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/json.hpp
 math.h
 -
 particle_filter.h
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/particle_filter.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/particle_filter.h
 
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/map.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/map.h
 
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/particle_filter.cpp
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/particle_filter.cpp
 random
 -
 algorithm
@@ -108,9 +108,9 @@ string
 iterator
 -
 particle_filter.h
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/particle_filter.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/particle_filter.h
 
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/particle_filter.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/particle_filter.h
 helper_functions.h
-/media/pemfir/Data/UdacityProjects2/Code/p3-PF/src/helper_functions.h
+/media/pemfir/Data/UdacityProjects2/Code/P3-PF/src/helper_functions.h
 
