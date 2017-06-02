@@ -20,11 +20,14 @@
 using namespace std;
 //pf.init(sense_x, sense_y, sense_theta, sigma_pos)
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
+
     num_particles =500;
+
     default_random_engine gen;
     normal_distribution<double> dist_x(x, std[0]);
 	normal_distribution<double> dist_y(y, std[1]);
 	normal_distribution<double> dist_theta(theta, std[2]);
+
     particles.resize(num_particles);
     for(int i=0;i<num_particles;++i){
         particles[i].id = i;
@@ -32,6 +35,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
         particles[i].y = dist_y(gen);
         particles[i].theta = dist_theta(gen);
         particles[i].weight = 1.0;
+
     }
       // Initialize all weights to 1.
     weights.clear();
@@ -42,13 +46,16 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 
     is_initialized = true;
 
+
 }
 
 void ParticleFilter::prediction(double delta_t, double std_pos[], double velocity, double yaw_rate) {
+    cout << "prediction in PF" << endl;
     default_random_engine gen;
     normal_distribution<double> dist_x(0, std_pos[0]);
 	normal_distribution<double> dist_y(0, std_pos[1]);
 	normal_distribution<double> dist_theta(0, std_pos[2]);
+
 	float sx = 0;
 	float sy = 0;
 	float st = 0;
@@ -58,6 +65,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
         P.x += velocity/yaw_rate*(sin(P.theta+yaw_rate*delta_t)-sin(P.theta)) + dist_x(gen);
         P.y += velocity/yaw_rate*(cos(P.theta)-cos(P.theta+yaw_rate*delta_t)) + dist_y(gen);
         P.theta += delta_t*yaw_rate + dist_theta(gen);
+
         } else {
         P.x += velocity*delta_t*(cos(P.theta)) + dist_x(gen);  // change sin and cos here x cos , y sin
         P.y += velocity*delta_t*(sin(P.theta)) + dist_y(gen);
@@ -87,6 +95,7 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 
 void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     std::vector<LandmarkObs> observations, Map map_landmarks) {
+
     float sx = std_landmark[0];
     float sy = std_landmark[1];
     float s = 0;
@@ -111,12 +120,14 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
                     minDistance = d;
                     x_diff = prediction_x - landx;
                     y_diff = prediction_y - landy;
+
                     inde = l;
                 }}}
             observations[o].id = inde;
 //            cout << "for particle" << p <<"distance to closest land mark is " <<  d  << "for landmark id " << inde << " and observation id "<< o << endl;
             particles[p].weight *= ( 1/(2*M_PI*sx*sy)) * exp( -1*( x_diff*x_diff/(2*sx*sx) +  y_diff*y_diff/(2*sy*sy) )) ;
             }
+
     if(particles[p].weight < 1E-6){
         particles[p].weight = 1E-6;
     }
@@ -128,6 +139,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     particles[p].weight = particles[p].weight/s;
     weights.push_back(particles[p].weight);
     }
+
 
 
 
@@ -143,6 +155,7 @@ void ParticleFilter::resample() {
   int particleIndex = densityVector(gen);
   Resampledparticles.push_back(particles[particleIndex]);
  }
+
 
   particles = Resampledparticles;
 
