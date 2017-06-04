@@ -132,3 +132,12 @@ The things the grading code is looking for are:
 2. **Performance**: your particle filter should complete execution within the time of 100 seconds.
 
 
+### Commands and hints
+run in the PF3-PF directory 
+./build.sh
+./run.sh
+then run the simulator
+you need to convert the files to executors 
+chmod +x term2_sim.x86_64
+then click on it to run it (navigate to the right project and click on run)
+the code will start running 
