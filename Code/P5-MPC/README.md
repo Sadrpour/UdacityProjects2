@@ -8,14 +8,14 @@ In the objective function of the optimization we focused on 2 aspects (1) keepin
 
 The contraints of the optimization assured that the evolution of the state of the vehicle over time is govern by a simple kinematic model as follows:
 
-![vehicle model](./kineticModel.png)
-
-![vehicle model](./cte1.png)
-where 
-![vehicle model](./cte2.png)
-
-![vehicle model](./psi1.png)
-where
+![vehicle model](./kineticModel.png)<br />
+<br />
+![vehicle model](./cte1.png)<br />
+where <br />
+![vehicle model](./cte2.png)<br />
+<br />
+![vehicle model](./psi1.png)<br />
+where<br />
 ![vehicle model](./psi2.png)
   
 the decision variables of the optimization are : (1) throttle denoted by "a" and (2) steering input denoted by "delta". 
