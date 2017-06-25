@@ -6,8 +6,8 @@
 using CppAD::AD;
 
 // TODO: Set the timestep length and duration
-size_t N = 30;
-double dt = 0.01;
+size_t N = 10;
+double dt = 0.1;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -20,7 +20,7 @@ double dt = 0.01;
 //
 // This is the length from front to CoG that has a similar radius.
 const double Lf = 2.67;
-double ref_v = 100;
+double ref_v = 60;
 
 
 size_t x_start = 0;
@@ -45,21 +45,33 @@ class FG_eval {
     fg[0] = 0;
 
     for (int t = 0; t < N; t++) {
-      fg[0] += 2000*CppAD::pow(vars[cte_start + t], 2);
-      fg[0] += 2000*CppAD::pow(vars[epsi_start + t], 2);
+      fg[0] += 200*CppAD::pow(vars[cte_start + t], 2);
+      fg[0] += 200*CppAD::pow(vars[epsi_start + t], 2);
       fg[0] += CppAD::pow(vars[v_start + t] - ref_v, 2);
     }
 
     // Minimize the use of actuators.
     for (int t = 0; t < N - 1; t++) {
-      fg[0] += 5*CppAD::pow(vars[delta_start + t], 2);
+      fg[0] += 10000*CppAD::pow(vars[delta_start + t], 2);
       fg[0] += 5*CppAD::pow(vars[a_start + t], 2);
     }
 
     // Minimize the value gap between sequential actuations.
     for (int t = 0; t < N - 2; t++) {
-      fg[0] += 200*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
-      fg[0] += 10*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+      fg[0] += 40000*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+      fg[0] += 100*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+    }
+    for (int t = 0; t < N - 3; t++) {
+      fg[0] += 40000*CppAD::pow(vars[delta_start + t + 2] - vars[delta_start + t], 2);
+    }
+    for (int t = 0; t < N - 4; t++) {
+      fg[0] += 40000*CppAD::pow(vars[delta_start + t + 3] - vars[delta_start + t], 2);
+    }
+    for (int t = 0; t < N - 5; t++) {
+      fg[0] += 40000*CppAD::pow(vars[delta_start + t + 4] - vars[delta_start + t], 2);
+    }
+    for (int t = 0; t < N - 6; t++) {
+      fg[0] += 40000*CppAD::pow(vars[delta_start + t + 5] - vars[delta_start + t], 2);
     }
 
 
@@ -99,12 +111,12 @@ class FG_eval {
 
   fg[1 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
   fg[1 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
-  fg[1 + psi_start + t] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
+  fg[1 + psi_start + t] = psi1 - (psi0 - v0 * delta0 / Lf * dt);
   fg[1 + v_start + t] = v1 - (v0 + a0 * dt);
   fg[1 + cte_start + t] =
       cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
   fg[1 + epsi_start + t] =
-      epsi1 - ((psi0 - psides0) + v0 * delta0 / Lf * dt);
+      epsi1 - ((psi0 - psides0) - v0 * delta0 / Lf * dt);
 }
 
 
