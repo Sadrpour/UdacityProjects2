@@ -11,11 +11,11 @@ The contraints of the optimization assured that the evolution of the state of th
 ![vehicle model](./kineticModel.png)
 
 ![vehicle model](./cte1.png)
-
+where 
 ![vehicle model](./cte2.png)
 
 ![vehicle model](./psi1.png)
-
+where
 ![vehicle model](./psi2.png)
   
 the decision variables of the optimization are : (1) throttle denoted by "a" and (2) steering input denoted by "delta". 
@@ -25,11 +25,11 @@ the decision variables of the optimization are : (1) throttle denoted by "a" and
 **N and dt (forecasting horizon)**
 I tried the following combinations
 
-N = 10, dt = 0.1,  details =  the vehicle finishes the track without any major problem
-N = 20, dt = 0.1,  details =  failed. In a sharp turn i think the optimization did not manage to converge due to high number of decision varibales
-N = 5,  dt = 0.01, details =  the vehicle finishes the track without any major problem
-N = 10, dt = 0.01, details =  failed. I believe again the solver was not able to converge into a reasonable trajectory due to large number of decision variables
-N = 10, dt = 0.5,  details =  failed. I fitted green trajectory was very off the reference trajectory. 
+N = 10, dt = 0.1,  details =  the vehicle finishes the track without any major problem<br />
+N = 20, dt = 0.1,  details =  failed. In a sharp turn i think the optimization did not manage to converge due to high number of decision varibales<br />
+N = 5,  dt = 0.01, details =  the vehicle finishes the track without any major problem<br />
+N = 10, dt = 0.01, details =  failed. I believe again the solver was not able to converge into a reasonable trajectory due to large number of decision variables<br />
+N = 10, dt = 0.5,  details =  failed. I fitted green trajectory was very off the reference trajectory. <br />
 
 **Optimization coeficients**
 
