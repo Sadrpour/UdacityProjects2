@@ -1,7 +1,44 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
+## Introduction
+In this project we implemented the model predictive control. The controller is govern by an optimization framework. 
+
+In the objective function of the optimization we focused on 2 aspects (1) keeping the vehicle position and bearing on the prescribed path (2) provide a smooth ride by minimizing abrupt changes in the actuators inputs.
+
+The contraints of the optimization assured that the evolution of the state of the vehicle over time is govern by a simple kinematic model as follows:
+
+![vehicle model](./kineticModel.png)
+![vehicle model](./cte1.png)
+![vehicle model](./cte2.png)
+![vehicle model](./psi1.png)
+![vehicle model](./psi2.png)
+  
+the decision variables of the optimization are : (1) throttle denoted by "a" and (2) steering input denoted by "delta". 
+
+## Model tunning 
+
+** N and dt (forecasting horizon) **
+I tried the following combinations
+
+N = 10, dt = 0.1,  details =  the vehicle finishes the track without any major problem
+N = 20, dt = 0.1,  details =  failed. In a sharp turn i think the optimization did not manage to converge due to high number of decision varibales
+N = 5,  dt = 0.01, details =  the vehicle finishes the track without any major problem
+N = 10, dt = 0.01, details =  failed. I believe again the solver was not able to converge into a reasonable trajectory due to large number of decision variables
+N = 10, dt = 0.5,  details =  failed. I fitted green trajectory was very off the reference trajectory. 
+
+** Optimization coeficients **
+
+The main challenge was to prevent the steering over-shoot. This only happened when delay was greater than 0 and got worse with larger delays. To prevent over steering, i added several penalty terms and increased steering cost. The steering inputs became stable for large enough coeficients in the optimization. 
+
+
+** fastest speed achived **
+I was able to run the vehicle with a reference velocity of 60. 
+
 ---
+
+
+
 
 ## Dependencies
 
