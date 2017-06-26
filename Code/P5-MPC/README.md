@@ -37,7 +37,23 @@ The main challenge was to prevent the steering over-shoot. This only happened wh
 
 
 **fastest speed achived**
-I was able to run the vehicle with a reference velocity of 60. 
+I was able to run the vehicle with a reference velocity of 90. 
+
+
+**Latency and Delay**
+In the first version of my submission, i was able to still drive the vehicle around without any changes to the initial states of the vehicle. However, for some strange reason the car failed when the reviewer tried to run it. If you change any of the default parameters before running the simulation please let me know, so i can fix the issue.
+
+In this version of the code, i used the hint from the reviewer and update the initial state of the vehicle by 100ms using the vehicle kinetic model as follows:
+
+            double dt = 0.1; // here i account for the latency of 100mili-seconds<br />
+
+            state[0] = v*dt;<br />
+            state[1] = 0.0;<br />
+            state[2] = v * (-delta)/2.67 * dt;<br />
+            state[3] = v + a*dt;<br />
+            state[4] = cte + v*sin(epsi) * dt;<br />
+            state[5] = epsi + v * (-delta)/2.67 * dt;<br />
+
 
 ---
 
