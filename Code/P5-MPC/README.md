@@ -47,12 +47,12 @@ In this version of the code, i used the hint from the reviewer and update the in
 
             double dt = 0.1; // here i account for the latency of 100mili-seconds<br />
 
-            state[0] = v*dt;<br />
-            state[1] = 0.0;<br />
-            state[2] = v * (-delta)/2.67 * dt;<br />
+            state[0] = v*dt;
+            state[1] = 0.0;
+            state[2] = v * (-delta)/2.67 * dt;
             state[3] = v + a*dt;<br />
-            state[4] = cte + v*sin(epsi) * dt;<br />
-            state[5] = epsi + v * (-delta)/2.67 * dt;<br />
+            state[4] = cte + v*sin(epsi) * dt;
+            state[5] = epsi + v * (-delta)/2.67 * dt;
 
 
 ---
