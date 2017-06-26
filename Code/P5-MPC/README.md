@@ -45,12 +45,12 @@ In the first version of my submission, i was able to still drive the vehicle aro
 
 In this version of the code, i used the hint from the reviewer and update the initial state of the vehicle by 100ms using the vehicle kinetic model as follows:
 
-            double dt = 0.1; // here i account for the latency of 100mili-seconds<br />
+            double dt = 0.1; // here i account for the latency of 100mili-seconds
 
             state[0] = v*dt;
             state[1] = 0.0;
             state[2] = v * (-delta)/2.67 * dt;
-            state[3] = v + a*dt;<br />
+            state[3] = v + a*dt;
             state[4] = cte + v*sin(epsi) * dt;
             state[5] = epsi + v * (-delta)/2.67 * dt;
 
