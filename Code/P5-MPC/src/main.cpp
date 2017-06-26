@@ -127,6 +127,19 @@ int main() {
 
           // state << px, py, deg2rad(psi), v, cte, epsi;
           state << 0, 0, 0, v, cte, epsi;
+            // predicting 100 ms in the future.
+            double delta = j[1]["steering_angle"];
+            double a = j[1]["throttle"];
+            double dt = 0.1; // here i account for the latency of 100mili-seconds
+
+            state[0] = v*dt;
+            state[1] = 0.0;
+            state[2] = v * (-delta)/2.67 * dt;
+            state[3] = v + a*dt;
+            state[4] = cte + v*sin(epsi) * dt;
+            state[5] = epsi + v * (-delta)/2.67 * dt;
+
+
           auto vars = mpc.Solve(state, coeffs);
 
           double steer_value = vars[0];
@@ -135,7 +148,7 @@ int main() {
           json msgJson;
           // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
           // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-          msgJson["steering_angle"] = steer_value/deg2rad(25);
+          msgJson["steering_angle"] = steer_value/(deg2rad(25)*2.67);
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory
