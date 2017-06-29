@@ -3,15 +3,8 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## Introduction
 
-![testRun](https://github.com/Sadrpour/UdacityProjects2/blob/master/Code/P5-MPC/Udacity2.mp4)
+![testRun](https://github.com/Sadrpour/UdacityProjects2/blob/master/Code/P5-MPC/Udacity2.gif)
 
-<script src="http://vjs.zencdn.net/4.0/video.js"></script>
-
-<video id="pelican-installation" class="video-js vjs-default-skin" controls
-preload="auto" width="683" height="384" poster="/static/screencasts/pelican-installation.png"
-data-setup="{}">
-<source src="https://github.com/Sadrpour/UdacityProjects2/blob/master/Code/P5-MPC/Udacity2.mp4" type='video/mp4'>
-</video>
 
 In this project we implemented the model predictive control. The controller is govern by an optimization framework. 
 
