@@ -2,6 +2,9 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ## Introduction
+
+![testRun](https://github.com/Sadrpour/UdacityProjects2/blob/master/Code/P5-MPC/Udacity2.mp4)
+
 In this project we implemented the model predictive control. The controller is govern by an optimization framework. 
 
 In the objective function of the optimization we focused on 2 aspects (1) keeping the vehicle position and bearing on the prescribed path (2) provide a smooth ride by minimizing abrupt changes in the actuators inputs.
